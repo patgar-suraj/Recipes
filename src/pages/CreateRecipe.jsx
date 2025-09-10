@@ -2,9 +2,13 @@ import { nanoid } from "nanoid";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { recipecontext } from "../context/RecipeContext";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CreateRecipe = () => {
   const { recipe, setrecipe } = useContext(recipecontext);
+
+  const navigate = useNavigate()
 
   const {
     register,
@@ -17,10 +21,9 @@ const CreateRecipe = () => {
     data.id = nanoid();
 
     setrecipe([...recipe, data]);
-
-    console.log(data);
-
+    toast.success("Recipe Created Successfully!")
     reset();
+    navigate("/recipe")
   };
 
   return (
@@ -33,12 +36,12 @@ const CreateRecipe = () => {
         <input
           type="url"
           placeholder="image URL"
-          {...register("imageurl")}
-          className="w-full bg-[#1F1E2E] border-4 rounded-2xl border-[#0E0D13]/50 p-2 font-semibold  text-[16px]"
+          {...register("imgurl")}
+          className="w-full bg-[#0E0D13] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         />
 
         {/* title */}
-        <span className="text-red-500 m-3">
+        <span className="text-red-500 text-[12px] m-3">
           {" "}
           {errors.title && errors.title.message}{" "}
         </span>
@@ -46,37 +49,37 @@ const CreateRecipe = () => {
           type="text"
           placeholder="title"
           {...register("title", { required: "Title cannot be empty!" })}
-          className="w-full bg-[#1F1E2E] border-4 rounded-2xl border-[#0E0D13]/50 p-2 font-semibold  text-[16px]"
+          className="w-full bg-[#0E0D13] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         />
 
         {/* description */}
-        <span className="text-red-500 m-3">
+        <span className="text-red-500 text-[12px] m-3">
           {" "}
           {errors.desc && errors.desc.message}{" "}
         </span>
         <textarea
           placeholder="description"
           {...register("desc", { required: "Description cannot be empty!" })}
-          className="w-full min-h-[150px] bg-[#1F1E2E] border-4 rounded-2xl border-[#0E0D13]/50 p-2 font-semibold  text-[16px]"
+          className="w-full min-h-[150px] bg-[#0E0D13] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         ></textarea>
 
         {/* ingredients */}
-        <span className="text-red-500 m-3">
+        <span className="text-red-500 text-[12px] m-3">
           {" "}
-          {errors.ingredients && errors.ingredients.message}{" "}
+          {errors.ingr && errors.ingr.message}{" "}
         </span>
         <textarea
           placeholder="write ingredients seperated by comma"
-          {...register("ingredients", {
+          {...register("ingr", {
             required: "Ingredients cannot be empty!",
           })}
-          className="w-full min-h-[150px] bg-[#1F1E2E] border-4 rounded-2xl border-[#0E0D13]/50 p-2 font-semibold  text-[16px]"
+          className="w-full min-h-[150px] bg-[#0E0D13] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         ></textarea>
 
         {/* category */}
         <select
-          {...register("category")}
-          className="w-full mt-5 bg-[#1F1E2E] border-4 rounded-2xl border-[#0E0D13]/50 p-2 font-semibold  text-[16px]"
+          {...register("cat")}
+          className="w-full mt-5 bg-[#0E0D13] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         >
           <option value="breakfast">Breakfast</option>
           <option value="lunch">Lunch</option>
@@ -89,7 +92,7 @@ const CreateRecipe = () => {
           type="text"
           placeholder="chef name"
           {...register("chef")}
-          className="w-full mt-5 bg-[#1F1E2E] border-4 rounded-2xl border-[#0E0D13]/50 p-2 font-semibold  text-[16px]"
+          className="w-full mt-5 bg-[#0E0D13] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         />
 
         {/* submit btn */}
