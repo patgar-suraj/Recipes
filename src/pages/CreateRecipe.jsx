@@ -32,13 +32,6 @@ const CreateRecipe = () => {
       className="w-full rounded flex items-center justify-center relative"
     >
       <div className="mt-5 w-full md:w-[60%] lg:w-[40%] flex flex-col items-center justify-center">
-        {/* image url */}
-        <input
-          type="url"
-          placeholder="image URL"
-          {...register("imgurl")}
-          className="w-full bg-[#0E0D13] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
-        />
 
         {/* title */}
         <span className="text-red-500 text-[12px] m-3">
@@ -75,6 +68,14 @@ const CreateRecipe = () => {
           })}
           className="w-full min-h-[150px] bg-[#0E0D13] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         ></textarea>
+
+        {/* image url */}
+        <input
+          type="url"
+          placeholder="image URL"
+          {...register("imgurl")}
+          className="w-full bg-[#0E0D13] mt-5 border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+        />
 
         {/* category */}
         <select

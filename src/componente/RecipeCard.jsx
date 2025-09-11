@@ -7,19 +7,20 @@ const RecipeCard = (props) => {
   return (
     <Link to={`/recipe/detail/${id}`}>
       <div className="card flex flex-col gap-2 overflow-hidden items-start justify-between p-2 break-all hover:scale-105 transition-all">
-        <div className="w-full h-[40%] ">
+        {/* image */}
+        <div className="w-full">
           {imgurl ? (
             <img
               src={imgurl}
               alt="food_img"
-              className="w-[100%] rounded-3xl border-[1px] p-2"
+              className="w-[100%] rounded-3xl border-2 border-white/20 p-2"
             />
           ) : (
-            <MdImageNotSupported className="w-full h-full rounded-3xl border-[1px]" />
+            <MdImageNotSupported className="w-full h-full rounded-3xl border-2 border-white/20" />
           )}
         </div>
-
-        <div className="w-full h-[40%] ">
+          {/* content */}
+        <div className="w-full">
           {/* title */}
           <div className="w-full flex items-center justify-center">
             <h1 className="text-sm xl:text-lg font-semibold text-amber-300 mt-2 mb-3 underline">
