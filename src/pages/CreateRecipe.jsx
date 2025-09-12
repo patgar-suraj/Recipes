@@ -42,7 +42,7 @@ const CreateRecipe = () => {
           type="text"
           placeholder="title"
           {...register("title", { required: "Title cannot be empty!" })}
-          className="w-full bg-[#0E0D13] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          className="w-full bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         />
 
         {/* description */}
@@ -53,7 +53,7 @@ const CreateRecipe = () => {
         <textarea
           placeholder="description"
           {...register("desc", { required: "Description cannot be empty!" })}
-          className="w-full min-h-[150px] bg-[#0E0D13] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          className="w-full min-h-[150px] bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         ></textarea>
 
         {/* ingredients */}
@@ -66,7 +66,7 @@ const CreateRecipe = () => {
           {...register("ingr", {
             required: "Ingredients cannot be empty!",
           })}
-          className="w-full min-h-[150px] bg-[#0E0D13] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          className="w-full min-h-[150px] bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         ></textarea>
 
         {/* image url */}
@@ -74,13 +74,13 @@ const CreateRecipe = () => {
           type="url"
           placeholder="image URL"
           {...register("imgurl")}
-          className="w-full bg-[#0E0D13] mt-5 border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          className="w-full bg-[#0E0D13] hover:bg-[#13111c] mt-5 border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         />
 
         {/* category */}
         <select
           {...register("cat")}
-          className="w-full mt-5 bg-[#0E0D13] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          className="w-full mt-5 bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         >
           <option value="breakfast">Breakfast</option>
           <option value="lunch">Lunch</option>
@@ -93,11 +93,11 @@ const CreateRecipe = () => {
           type="text"
           placeholder="chef name"
           {...register("chef")}
-          className="w-full mt-5 bg-[#0E0D13] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          className="w-full mt-5 bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         />
 
         {/* submit btn */}
-        <button className="bg-[#0E0D13] p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400">
+        <button className="bg-[#0E0D13] hover:bg-[#13111c] p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400">
           Create
         </button>
       </div>
