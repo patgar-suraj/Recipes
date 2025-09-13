@@ -1,0 +1,163 @@
+import { useContext, useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { recipecontext } from "../context/RecipeContext";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { MdImageNotSupported } from "react-icons/md";
+
+const SingleRecipe = () => {
+  const { recipe, setrecipe } = useContext(recipecontext);
+  const navigate = useNavigate();
+  const params = useParams();
+  const data = recipe.find((data) => params.id == data.id);
+
+  // State to handle image loading errors.
+  const [imgLoadError, setimgLoadError] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+    watch,
+  } = useForm({
+    // Use 'data' to set the default values for all inputs.
+    defaultValues: {
+      imgurl: data.imgurl,
+      title: data.title,
+      desc: data.desc,
+      ingr: data.ingr,
+      cat: data.cat,
+      chef: data.chef,
+    },
+  });
+
+  // Watch the 'imgurl' input field. This will cause a re-render
+  // whenever the input value changes, making the image preview dynamic.
+  const imgpreview = watch("imgurl");
+
+  // useEffect to reset the image error state whenever the URL changes
+  // This is crucial for fixing the immediate preview behavior.
+  useEffect(() => {
+    setimgLoadError(false);
+  }, [imgpreview]);
+
+  const submitHandler = (updatedData) => {
+    const index = recipe.findIndex((r) => params.id === r.id);
+
+    if (index !== -1) {
+      const updatedRecipes = [...recipe];
+      updatedRecipes[index] = { ...updatedRecipes[index], ...updatedData };
+      setrecipe(updatedRecipes);
+      toast.success("Recipe Updated!");
+    }
+  };
+
+  const deleteHandler = () => {
+    const filterdata = recipe.filter((r) => r.id !== params.id);
+    setrecipe(filterdata);
+    toast.success("Recipe Deleted!");
+    navigate("/recipe");
+  };
+
+  if (!data) {
+    return "Loading...";
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit(submitHandler)}
+      className="w-full rounded flex flex-col items-center justify-center relative"
+    >
+      <div className="mt-5 w-[60%] md:w-[30%] lg:w-[20%] flex flex-col items-center justify-center">
+        {/* Conditional rendering for the image preview */}
+        {imgpreview && !imgLoadError ? (
+          <img
+            src={imgpreview}
+            alt="food_img"
+            className="w-[100%] rounded-3xl border-2 border-white/20 p-2 hover:scale-[100.8%] transition-all hover:shadow-xl"
+            onError={() => setimgLoadError(true)} // Set state to true on error
+            onLoad={() => setimgLoadError(false)} // Set state to false on successful load
+          />
+        ) : (
+          <MdImageNotSupported className="w-full h-full rounded-3xl border-2 border-white/20 border-b-2 border-b-amber-400" />
+        )}
+      </div>
+
+      <div className="mt-5 w-full md:w-[60%] lg:w-[40%] flex flex-col items-center justify-center">
+        {/* image url */}
+        <input
+          type="url"
+          placeholder="image URL"
+          {...register("imgurl")}
+          className="w-full bg-[#0E0D13] hover:bg-[#13111c] mt-5 border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold text-[16px]"
+        />
+
+        {/* The rest of your form inputs */}
+        <span className="text-red-500 text-[12px] m-3">
+          {" "}
+          {errors.title && errors.title.message}{" "}
+        </span>
+        <input
+          type="text"
+          placeholder="title"
+          {...register("title", { required: "Title cannot be empty!" })}
+          className="w-full bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold text-[16px]"
+        />
+
+        <span className="text-red-500 text-[12px] m-3">
+          {" "}
+          {errors.desc && errors.desc.message}{" "}
+        </span>
+        <textarea
+          placeholder="description"
+          {...register("desc", { required: "Description cannot be empty!" })}
+          className="w-full min-h-[150px] bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold text-[16px]"
+        ></textarea>
+
+        <span className="text-red-500 text-[12px] m-3">
+          {" "}
+          {errors.ingr && errors.ingr.message}{" "}
+        </span>
+        <textarea
+          placeholder="write ingredients seperated by comma"
+          {...register("ingr", {
+            required: "Ingredients cannot be empty!",
+          })}
+          className="w-full min-h-[150px] bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold text-[16px]"
+        ></textarea>
+
+        <select
+          {...register("cat")}
+          className="w-full mt-5 bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold text-[16px]"
+        >
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="snaks">Snaks</option>
+        </select>
+
+        <input
+          type="text"
+          placeholder="chef name"
+          {...register("chef")}
+          className="w-full mt-5 bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold text-[16px]"
+        />
+
+        <div className="w-full flex gap-10 px-5">
+          <button className="bg-[#0E0D13] hover:bg-[#13111c] cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400">
+            Update
+          </button>
+          <button
+            onClick={deleteHandler}
+            className="bg-[#0E0D13] hover:bg-[#13111c] cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-red-500 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-red-500"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </form>
+  );
+};
+
+export default SingleRecipe;

@@ -1,8 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { recipecontext } from "../context/RecipeContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { MdImageNotSupported } from "react-icons/md";
+import { IoCaretBackOutline } from "react-icons/io5";
 
 const SingleRecipe = () => {
   const { recipe, setrecipe } = useContext(recipecontext);
@@ -11,11 +13,13 @@ const SingleRecipe = () => {
   const params = useParams();
   const data = recipe.find((data) => params.id == data.id);
 
+  const [imgLoadError, setimgLoadError] = useState(false);
+
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
+    watch,
   } = useForm({
     defaultValues: {
       imgurl: data.imgurl,
@@ -27,40 +31,80 @@ const SingleRecipe = () => {
     },
   });
 
+  const imgpreview = watch("imgurl");
+
+  useEffect(() => {
+    setimgLoadError(false);
+  }, [imgpreview]);
+
   const submitHandler = (data) => {
-    const index = recipe.findIndex((data) => params.id == data.id);
-    const copydata = [...recipe];
-    copydata[index] = { ...copydata[index], ...data };
-    setrecipe(copydata);
-    toast.success("Recipe Updated!");
+    const index = recipe.findIndex((r) => params.id == r.id);
+    if (index !== -1) {
+      const copydata = [...recipe];
+      copydata[index] = { ...copydata[index], ...data };
+      setrecipe(copydata);
+      toast.success("Recipe Updated!");
+    }
   };
 
+  if (!data) {
+    return "Loading...";
+  }
+
   const deleteHandler = () => {
+    navigate("/recipe");
+
     const filterdata = recipe.filter((r) => r.id != params.id);
     setrecipe(filterdata);
-    toast.success("Recipe Deleted!")
+    toast.success("Recipe Deleted!");
+  };
 
+  const goBack = () => {
     navigate("/recipe");
   };
 
-  return data ? (
+  return (
     <form
       onSubmit={handleSubmit(submitHandler)}
       className="w-full rounded flex flex-col items-center justify-center relative"
     >
-      <div className="mt-5 w-[60%] md:w-[30%] lg:w-[20%] flex flex-col items-center justify-center">
-        {data.imgurl ? (
-          <img
-            src={data.imgurl}
-            alt="food_img"
-            className="w-[100%] rounded-3xl border-2 border-white/20 p-2 hover:scale-[100.8%] transition-all hover:shadow-xl"
-          />
-        ) : (
-          <MdImageNotSupported className="w-full h-full rounded-3xl border-2 border-white/20 border-b-2 border-b-amber-400" />
-        )}
+      <div className="relative flex items-center justify-center w-[80%] md:w-[60%] xl:w-[40%]">
+        <div
+          className="group absolute hover:shadow-lg flex items-center justify-start top-[10%] left-[0] w-[20px] hover:w-[60px] h-[30px] xl:w-[30px] hover:xl:w-[70px] xl:h-[40px] p-[3px]  xl:p-[6px] rounded-full bg-[#0E0D13] hover:bg-[#0E0D13]/80 hover:text-amber-400 border-l-2 active:border-l-0 cursor-pointer"
+          onClick={goBack}
+        >
+          <IoCaretBackOutline />
+          <span className="absolute left-[30%] top-1/2 -translate-y-1/2 rounded px-2 py-1 text-white text-xs invisible group-hover:visible whitespace-nowrap">
+            Back
+          </span>
+        </div>
+
+        <div className="mt-5 w-[200px] md:w-[250px] xl:w-[280px] object-cover overflow-hidden flex items-center justify-center bg-[#0E0D13] hover:bg-[#0E0D13]/80 rounded-3xl hover:shadow-xl">
+          {imgpreview && !imgLoadError ? (
+            <img
+              src={imgpreview}
+              alt="food_img"
+              className="w-full rounded-3xl border-2 border-white/20 p-2 hover:scale-[100.8%] transition-all"
+              onError={() => setimgLoadError(true)}
+              onLoad={() => setimgLoadError(false)}
+            />
+          ) : (
+            <div className="w-full h-[200px] flex items-center justify-center rounded-3xl border-2 border-white/20 border-b-2 border-b-amber-400 hover:scale-[100.8%] transition-all">
+              <MdImageNotSupported className="w-[30%] h-[30%]" />
+            </div>
+          )}
+        </div>
       </div>
 
-      <div className="mt-5 w-full md:w-[60%] lg:w-[40%] flex flex-col items-center justify-center">
+      <div className="mt-5 w-full md:w-[60%] xl:w-[40%] flex flex-col items-center justify-center">
+        {/* image url */}
+        <input
+          type="url"
+          placeholder="image URL"
+          {...register("imgurl")}
+          className="w-full bg-[#0E0D13] hover:bg-[#13111c] mt-5 border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+        />
+
         {/* title */}
         <span className="text-red-500 text-[12px] m-3">
           {" "}
@@ -97,14 +141,6 @@ const SingleRecipe = () => {
           className="w-full min-h-[150px] bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         ></textarea>
 
-        {/* image url */}
-        <input
-          type="url"
-          placeholder="image URL"
-          {...register("imgurl")}
-          className="w-full bg-[#0E0D13] hover:bg-[#13111c] mt-5 border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
-        />
-
         {/* category */}
         <select
           {...register("cat")}
@@ -126,20 +162,18 @@ const SingleRecipe = () => {
 
         {/* submit btn */}
         <div className="w-full flex gap-10 px-5">
-          <button className="bg-[#0E0D13] hover:bg-[#13111c] p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400">
+          <button className="bg-[#0E0D13] hover:bg-[#13111c] cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400">
             Update
           </button>
           <button
             onClick={deleteHandler}
-            className="bg-[#0E0D13] hover:bg-[#13111c] p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-red-500 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-red-500"
+            className="bg-[#0E0D13] hover:bg-[#13111c] cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-red-500 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-red-500"
           >
             Delete
           </button>
         </div>
       </div>
     </form>
-  ) : (
-    "Loading..."
   );
 };
 

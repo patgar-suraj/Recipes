@@ -4,26 +4,30 @@ import { useForm } from "react-hook-form";
 import { recipecontext } from "../context/RecipeContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { MdImageNotSupported } from "react-icons/md";
 
 const CreateRecipe = () => {
   const { recipe, setrecipe } = useContext(recipecontext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
+    watch,
   } = useForm();
+
+  const imagePreview = watch("imgurl");
 
   const submitHandler = (data) => {
     data.id = nanoid();
 
     setrecipe([...recipe, data]);
-    toast.success("Recipe Created Successfully!")
+    toast.success("Recipe Created Successfully!");
     reset();
-    navigate("/recipe")
+    navigate("/recipe");
   };
 
   return (
@@ -32,6 +36,21 @@ const CreateRecipe = () => {
       className="w-full rounded flex items-center justify-center relative"
     >
       <div className="mt-5 w-full md:w-[60%] lg:w-[40%] flex flex-col items-center justify-center">
+        <div className="mt-5 w-[60%] md:w-[50%] flex flex-col items-center justify-center">
+            <img
+              src={imagePreview ? imagePreview : null}
+              alt="food_img"
+              className="w-[100%] rounded-3xl border-2 border-white/20 p-2 hover:scale-[100.8%] transition-all hover:shadow-xl"
+            />
+        </div>
+
+        {/* image url */}
+        <input
+          type="url"
+          placeholder="image URL"
+          {...register("imgurl")}
+          className="w-full bg-[#0E0D13] hover:bg-[#13111c] mt-5 border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+        />
 
         {/* title */}
         <span className="text-red-500 text-[12px] m-3">
@@ -69,14 +88,6 @@ const CreateRecipe = () => {
           className="w-full min-h-[150px] bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         ></textarea>
 
-        {/* image url */}
-        <input
-          type="url"
-          placeholder="image URL"
-          {...register("imgurl")}
-          className="w-full bg-[#0E0D13] hover:bg-[#13111c] mt-5 border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
-        />
-
         {/* category */}
         <select
           {...register("cat")}
@@ -97,7 +108,7 @@ const CreateRecipe = () => {
         />
 
         {/* submit btn */}
-        <button className="bg-[#0E0D13] hover:bg-[#13111c] p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400">
+        <button className="bg-[#0E0D13] hover:bg-[#13111c] p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400 cursor-pointer">
           Create
         </button>
       </div>
