@@ -9,7 +9,7 @@ const Navbar = () => {
       <NavLink 
         to="/"
         className={({ isActive }) =>
-          `flex flex-col items-center gap-2 ${isActive ? "text-amber-300" : ""}`
+          `flex flex-col items-center hover:text-amber-300/80 gap-2 ${isActive ? "text-amber-300" : ""}`
         }
       >
         <TbHomeDot className="text-4xl" />
@@ -19,7 +19,7 @@ const Navbar = () => {
       <NavLink 
         to="/about"
         className={({ isActive }) =>
-          `flex flex-col items-center gap-2 ${isActive ? "text-amber-300" : ""}`
+          `flex flex-col items-center hover:text-amber-300/80 gap-2 ${isActive ? "text-amber-300" : ""}`
         }
       >
         <TbHomeQuestion className="text-4xl" />
@@ -29,7 +29,7 @@ const Navbar = () => {
       <NavLink 
         to="/recipe"
         className={({ isActive }) =>
-          `flex flex-col items-center gap-2 ${isActive ? "text-amber-300" : ""}`
+          `flex flex-col items-center hover:text-amber-300/80 gap-2 ${isActive ? "text-amber-300" : ""}`
         }
       >
         <TbHomeEco className="text-4xl" />
@@ -39,7 +39,7 @@ const Navbar = () => {
       <NavLink 
         to="/createRecipe"
         className={({ isActive }) =>
-          `flex flex-col items-center gap-2 ${isActive ? "text-amber-300" : ""}`
+          `flex flex-col items-center hover:text-amber-300/80 gap-2 ${isActive ? "text-amber-300" : ""}`
         }
       >
         <TbHomeEdit className="text-4xl" />
