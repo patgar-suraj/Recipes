@@ -1,14 +1,12 @@
 import { nanoid } from "nanoid";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { recipecontext } from "../context/RecipeContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { MdImageNotSupported } from "react-icons/md";
 
 const CreateRecipe = () => {
   const { recipe, setrecipe } = useContext(recipecontext);
-
   const navigate = useNavigate();
 
   const {
@@ -23,8 +21,10 @@ const CreateRecipe = () => {
 
   const submitHandler = (data) => {
     data.id = nanoid();
-
-    setrecipe([...recipe, data]);
+    const copydata = [...recipe]
+    copydata.push(data)
+    setrecipe(copydata)
+    localStorage.setItem("recipes", JSON.stringify(copydata))
     toast.success("Recipe Created Successfully!");
     reset();
     navigate("/recipe");

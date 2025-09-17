@@ -5,6 +5,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { MdImageNotSupported } from "react-icons/md";
 import { IoCaretBackOutline } from "react-icons/io5";
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 const SingleRecipe = () => {
   const { recipe, setrecipe } = useContext(recipecontext);
@@ -22,27 +24,24 @@ const SingleRecipe = () => {
     watch,
   } = useForm({
     defaultValues: {
-      imgurl: data.imgurl,
-      title: data.title,
-      desc: data.desc,
-      ingr: data.ingr,
-      cat: data.cat,
-      chef: data.chef,
+      imgurl: data?.imgurl,
+      title: data?.title,
+      desc: data?.desc,
+      ingr: data?.ingr,
+      cat: data?.cat,
+      chef: data?.chef,
     },
   });
 
   const imgpreview = watch("imgurl");
 
-  useEffect(() => {
-    setimgLoadError(false);
-  }, [imgpreview]);
-
-  const submitHandler = (data) => {
+  const updataHandler = (data) => {
     const index = recipe.findIndex((r) => params.id == r.id);
     if (index !== -1) {
       const copydata = [...recipe];
       copydata[index] = { ...copydata[index], ...data };
       setrecipe(copydata);
+      localStorage.setItem("recipes", JSON.stringify(copydata));
       toast.success("Recipe Updated!");
     }
   };
@@ -53,9 +52,9 @@ const SingleRecipe = () => {
 
   const deleteHandler = () => {
     navigate("/recipe");
-
     const filterdata = recipe.filter((r) => r.id != params.id);
     setrecipe(filterdata);
+    localStorage.setItem("recipes", JSON.stringify(filterdata));
     toast.success("Recipe Deleted!");
   };
 
@@ -63,9 +62,28 @@ const SingleRecipe = () => {
     navigate("/recipe");
   };
 
+  // useEffect(() => {
+  //   setimgLoadError(false);
+  // }, [imgpreview]);
+
+  const [favroite, setfavroite] = useState(JSON.parse(localStorage.getItem("fav")) || [])
+
+  const favhandler = () => {
+    let copyfav = [...favroite]
+    copyfav.push(data)
+    setfavroite(copyfav)
+    localStorage.setItem("fav", JSON.stringify(copyfav))
+  };
+  
+  const unfavhandler = () => {
+    const filterfav = favroite.filter((f) => f.id != data?.id)
+    setfavroite(filterfav)
+    localStorage.setItem("fav", JSON.stringify(filterfav))
+  };
+
   return (
     <form
-      onSubmit={handleSubmit(submitHandler)}
+      onSubmit={handleSubmit(updataHandler)}
       className="w-full rounded flex flex-col items-center justify-center relative"
     >
       <div className="relative flex items-center justify-center w-[80%] md:w-[60%] xl:w-[40%]">
@@ -79,12 +97,12 @@ const SingleRecipe = () => {
           </span>
         </div>
 
-        <div className="mt-5 w-[200px] md:w-[250px] xl:w-[280px] object-cover overflow-hidden flex items-center justify-center bg-[#0E0D13] hover:bg-[#0E0D13]/80 rounded-3xl hover:shadow-xl">
+        <div className="mt-5 w-[200px] max-h-[200px] md:w-[250px] xl:w-[280px] border-2 border-white/20 object-cover overflow-hidden flex items-center justify-center bg-[#0E0D13] hover:bg-[#0E0D13]/80 rounded-3xl hover:shadow-xl">
           {imgpreview && !imgLoadError ? (
             <img
               src={imgpreview}
               alt="food_img"
-              className="w-full rounded-3xl border-2 border-white/20 p-2 hover:scale-[100.8%] transition-all"
+              className="w-full rounded-3xl  p-2 hover:scale-[100.8%] transition-all"
               onError={() => setimgLoadError(true)}
               onLoad={() => setimgLoadError(false)}
             />
@@ -92,6 +110,20 @@ const SingleRecipe = () => {
             <div className="w-full h-[200px] flex items-center justify-center rounded-3xl border-2 border-white/20 border-b-2 border-b-amber-400 hover:scale-[100.8%] transition-all">
               <MdImageNotSupported className="w-[30%] h-[30%]" />
             </div>
+          )}
+        </div>
+
+        <div>
+          {favroite.find((f) => f.id == data?.id) ? (
+            <FaHeart
+              onClick={unfavhandler}
+              className="absolute right-0 top-[15px] text-3xl z-20  text-red-500"
+            />
+          ) : (
+            <FaRegHeart
+              onClick={favhandler}
+              className="absolute right-0 top-[15px] text-3xl z-20 text-red-500"
+            />
           )}
         </div>
       </div>
