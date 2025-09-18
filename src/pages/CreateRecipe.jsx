@@ -25,7 +25,7 @@ const CreateRecipe = () => {
     copydata.push(data)
     setrecipe(copydata)
     localStorage.setItem("recipes", JSON.stringify(copydata))
-    toast.success("Recipe Created Successfully!");
+    toast.success("Recipe Created!");
     reset();
     navigate("/recipe");
   };
@@ -97,6 +97,8 @@ const CreateRecipe = () => {
           <option value="lunch">Lunch</option>
           <option value="dinner">Dinner</option>
           <option value="snaks">Snaks</option>
+          <option value="smoothhies">Smoothhies</option>
+          <option value="dessert">Dessert</option>
         </select>
 
         {/* chef */}
@@ -108,7 +110,7 @@ const CreateRecipe = () => {
         />
 
         {/* submit btn */}
-        <button className="bg-[#0E0D13] hover:bg-[#13111c] p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400 cursor-pointer">
+        <button className="bg-gradient-to-r from-[#0E0D13] via-[#0E0D13] to-[#1b1924] hover:bg-gradient-to-l p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 border-b-2 transition-all active:text-[17px] border-amber-400 cursor-pointer">
           Create
         </button>
       </div>

@@ -1,18 +1,18 @@
-import { useContext } from "react";
-import { recipecontext } from "../context/RecipeContext";
 import RecipeCard from "../componente/RecipeCard";
 import { CgSearchLoading } from "react-icons/cg";
 
-const Recipe = () => {
-  const { recipe } = useContext(recipecontext);
+const Favroite = () => {
+  const favroite = JSON.parse(localStorage.getItem("fav") || "[]");
 
-  const renderrecipes = recipe.map((data) => (
+  const renderrecipes = favroite.map((data) => (
     <RecipeCard key={data.id} data={data} />
   ));
 
-  const norecipefound = (
-    <div className="w-screen flex items-center justify-center mt-10 -ml-6 md:-ml-12">
-      <p className="lg:text-2xl text-lg text-amber-400 font-semibold text-center">No recipes found!</p>
+  const nofavfound = (
+    <div className="w-screen flex flex-wrap p-10 items-center justify-center mt-10 -ml-6 md:-ml-12">
+      <p className="lg:text-2xl text-lg text-amber-400 font-semibold text-center">
+        You haven't added any favorite recipes!
+      </p>
     </div>
   );
 
@@ -22,7 +22,7 @@ const Recipe = () => {
       <div className="w-full md:w-1/2 bg-gradient-to-r hover:bg-gradient-to-l from-[#0E0D13] via-[#0E0D13] to-[#1b1924] p-2 rounded-full border-l-2 border-amber-300 flex items-center justify-between">
         <input
           type="text"
-          placeholder="find your recipe..."
+          placeholder="find your favorite recipe..."
           className="w-[90%] outline-none pl-2"
         />
         <button>
@@ -32,10 +32,10 @@ const Recipe = () => {
 
       {/* recipe showcase */}
       <div className="w-full grid grid-flow-row grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4">
-        {recipe.length > 0 ? renderrecipes : norecipefound}
+        {favroite.length > 0 ? renderrecipes : nofavfound}
       </div>
     </div>
   );
 };
 
-export default Recipe;
+export default Favroite;

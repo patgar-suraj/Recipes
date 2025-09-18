@@ -35,6 +35,10 @@ const SingleRecipe = () => {
 
   const imgpreview = watch("imgurl");
 
+  const [favroite, setfavroite] = useState(
+    JSON.parse(localStorage.getItem("fav")) || []
+  );
+
   const updataHandler = (data) => {
     const index = recipe.findIndex((r) => params.id == r.id);
     if (index !== -1) {
@@ -46,40 +50,62 @@ const SingleRecipe = () => {
     }
   };
 
-  if (!data) {
-    return "Loading...";
-  }
-
   const deleteHandler = () => {
-    navigate("/recipe");
     const filterdata = recipe.filter((r) => r.id != params.id);
     setrecipe(filterdata);
     localStorage.setItem("recipes", JSON.stringify(filterdata));
-    toast.success("Recipe Deleted!");
-  };
 
-  const goBack = () => {
+    const fav = JSON.parse(localStorage.getItem("fav") || "[]")
+    const filterfav = fav.filter((f) => f.id != params.id)
+    localStorage.setItem("fav", JSON.stringify(filterfav))
+    setfavroite(filterfav)
+
+    toast.success("Recipe Deleted!");
     navigate("/recipe");
   };
 
-  // useEffect(() => {
-  //   setimgLoadError(false);
-  // }, [imgpreview]);
-
-  const [favroite, setfavroite] = useState(JSON.parse(localStorage.getItem("fav")) || [])
+  const goBack = () => {
+    navigate(-1);
+  };
 
   const favhandler = () => {
-    let copyfav = [...favroite]
-    copyfav.push(data)
-    setfavroite(copyfav)
-    localStorage.setItem("fav", JSON.stringify(copyfav))
+    let copyfav = [...favroite];
+    copyfav.push(data);
+    setfavroite(copyfav);
+    localStorage.setItem("fav", JSON.stringify(copyfav));
+
+    toast.success("Added to favorites!")
   };
-  
+
   const unfavhandler = () => {
-    const filterfav = favroite.filter((f) => f.id != data?.id)
-    setfavroite(filterfav)
-    localStorage.setItem("fav", JSON.stringify(filterfav))
+    const filterfav = favroite.filter((f) => f.id != data?.id);
+    setfavroite(filterfav);
+    localStorage.setItem("fav", JSON.stringify(filterfav));
+
+    toast.success("Removed from favorites!")
   };
+
+  if (!data) {
+    return (
+      <div className="w-full flex items-center justify-center">
+        <div className="w-[80%] md:w-[60%] xl:w-[40%] relative flex items-center justify-center">
+          <div
+            className="group absolute hover:shadow-lg flex items-center justify-start top-[10%] left-[0] w-[20px] hover:w-[60px] h-[30px] xl:w-[30px] hover:xl:w-[70px] xl:h-[40px] p-[3px]  xl:p-[6px] rounded-full bg-[#0E0D13] hover:bg-[#0E0D13]/80 hover:text-amber-400 border-l-2 active:border-l-0 cursor-pointer"
+            onClick={goBack}
+          >
+            <IoCaretBackOutline />
+            <span className="absolute left-[30%] top-1/2 -translate-y-1/2 rounded px-2 py-1 text-white text-xs invisible group-hover:visible whitespace-nowrap">
+              Back
+            </span>
+          </div>
+
+          <span className="text-2xl text-amber-400 font-semibold">
+            Loading...
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <form
