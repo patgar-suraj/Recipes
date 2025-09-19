@@ -13,7 +13,7 @@ const TrendingRecipeCard = ({ scrollRef }) => {
           key={idx}
           className="relative shrink-0 rounded-2xl bg-black overflow-hidden"
         >
-          <h1 className="absolute z-20 bottom-12 left-3 text-2xl font-semibold text-white">
+          <h1 className="absolute z-20 bottom-12 left-3 break-all w-[125px] lg:w-[175px] text-xl lg:text-[22px] font-semibold text-white">
             {recipe.name}
           </h1>
           <span className="absolute z-20 bottom-12 right-6 text-2xl font-semibold text-white">
