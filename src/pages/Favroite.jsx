@@ -11,7 +11,7 @@ const Favroite = () => {
   const filteredFavorites = favroite.filter(
     (r) =>
       r.title?.toLowerCase().includes(query.toLowerCase()) ||
-      r.category?.toLowerCase().includes(query.toLowerCase())
+      r.cat?.toLowerCase().includes(query.toLowerCase())
   );
 
   const renderrecipes = filteredFavorites.map((data) => (
