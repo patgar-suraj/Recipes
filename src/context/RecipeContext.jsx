@@ -12,8 +12,16 @@ const RecipeContext = (props) => {
     localStorage.setItem("recipes", JSON.stringify(recipe));
   }, [recipe]);
 
+  const [query, setQuery] = useState("")
+
+  const searchRecipe = recipe.filter(
+    (r) => 
+      r.title.toLowerCase().includes(query.toLowerCase()) ||
+      r.cat.toLowerCase().includes(query.toLowerCase())
+  )
+
   return (
-    <recipecontext.Provider value={{ recipe, setrecipe }}>
+    <recipecontext.Provider value={{ recipe, setrecipe, query, setQuery, searchRecipe }}>
       {props.children}
     </recipecontext.Provider>
   );

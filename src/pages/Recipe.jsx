@@ -1,38 +1,38 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { recipecontext } from "../context/RecipeContext";
 import RecipeCard from "../componente/RecipeCard";
-import { CgSearchLoading } from "react-icons/cg";
+import SearchCard from "../componente/SearchCard";
 
 const Recipe = () => {
   const { recipe } = useContext(recipecontext);
+  const [query, setQuery] = useState("");
 
-  const renderrecipes = recipe.map((data) => (
+  const filteredRecipes = recipe.filter(
+    (r) =>
+      r.title?.toLowerCase().includes(query.toLowerCase()) ||
+      r.cat?.toLowerCase().includes(query.toLowerCase())
+  );
+
+  const renderrecipes = filteredRecipes.map((data) => (
     <RecipeCard key={data.id} data={data} />
   ));
 
   const norecipefound = (
-    <div className="w-screen flex items-center justify-center mt-10 -ml-6 md:-ml-12">
-      <p className="lg:text-2xl text-lg text-amber-400 font-semibold text-center">No recipes found!</p>
+    <div className="w-full flex items-center justify-center mt-10">
+      <p className="lg:text-2xl text-lg accent font-semibold text-center">
+        No recipes found!
+      </p>
     </div>
   );
 
   return (
     <div className="flex flex-col items-center justify-center gap-5 mb-24">
       {/* search option */}
-      <div className="w-full md:w-1/2 bg-gradient-to-r hover:bg-gradient-to-l from-[#0E0D13] via-[#0E0D13] to-[#1b1924] p-2 rounded-full border-l-2 border-amber-300 flex items-center justify-between">
-        <input
-          type="text"
-          placeholder="find your recipe..."
-          className="w-[90%] outline-none pl-2"
-        />
-        <button>
-          <CgSearchLoading className="w-[30px] h-[30px] text-amber-300 cursor-pointer hover:text-amber-400" />
-        </button>
-      </div>
+      <SearchCard query={query} setQuery={setQuery} />
 
       {/* recipe showcase */}
       <div className="w-full grid grid-flow-row grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4">
-        {recipe.length > 0 ? renderrecipes : norecipefound}
+        {filteredRecipes.length > 0 ? renderrecipes : norecipefound}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { BiArrowToLeft } from "react-icons/bi";
 import { BiArrowToRight } from "react-icons/bi";
 import { useRef } from "react";
 import Contect from "./Contact";
+import SearchCard from "../componente/SearchCard";
 
 const Home = () => {
   const scrollRef = useRef(null);
@@ -35,16 +36,7 @@ const Home = () => {
 
       <h1 className="text-3xl font-mono my-5">What's cooking today?</h1>
 
-      <div className="w-full md:w-1/2 bg-gradient-to-r hover:bg-gradient-to-l from-[#0E0D13] via-[#0E0D13] to-[#1b1924] p-2 rounded-full border-l-2 border-amber-300 flex items-center justify-between">
-        <input
-          type="text"
-          placeholder="search here..."
-          className="w-[90%] outline-none pl-2"
-        />
-        <button>
-          <CgSearchLoading className="w-[30px] h-[30px] text-amber-300 cursor-pointer hover:text-amber-400" />
-        </button>
-      </div>
+      <SearchCard />
 
       <div className="w-full xl:w-1/2 overflow-hidden mt-5">
         <CategoryCard />
