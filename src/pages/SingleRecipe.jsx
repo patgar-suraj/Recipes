@@ -55,10 +55,10 @@ const SingleRecipe = () => {
     setrecipe(filterdata);
     localStorage.setItem("recipes", JSON.stringify(filterdata));
 
-    const fav = JSON.parse(localStorage.getItem("fav") || "[]")
-    const filterfav = fav.filter((f) => f.id != params.id)
-    localStorage.setItem("fav", JSON.stringify(filterfav))
-    setfavroite(filterfav)
+    const fav = JSON.parse(localStorage.getItem("fav") || "[]");
+    const filterfav = fav.filter((f) => f.id != params.id);
+    localStorage.setItem("fav", JSON.stringify(filterfav));
+    setfavroite(filterfav);
 
     toast.success("Recipe Deleted!");
     navigate("/recipe");
@@ -74,7 +74,7 @@ const SingleRecipe = () => {
     setfavroite(copyfav);
     localStorage.setItem("fav", JSON.stringify(copyfav));
 
-    toast.success("Added to favorites!")
+    toast.success("Added to favorites!");
   };
 
   const unfavhandler = () => {
@@ -82,7 +82,7 @@ const SingleRecipe = () => {
     setfavroite(filterfav);
     localStorage.setItem("fav", JSON.stringify(filterfav));
 
-    toast.success("Removed from favorites!")
+    toast.success("Removed from favorites!");
   };
 
   if (!data) {
@@ -156,76 +156,94 @@ const SingleRecipe = () => {
 
       <div className="mt-5 w-full md:w-[60%] xl:w-[40%] flex flex-col items-center justify-center">
         {/* image url */}
-        <input
-          type="url"
-          placeholder="image URL"
-          {...register("imgurl")}
-          className="w-full bg-[#0E0D13] hover:bg-[#13111c] mt-5 border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
-        />
+        <div className="w-full flex flex-col items-start justify-start mt-3">
+          <span className="text-amber-500 text-[12px] pl-3">Image link</span>
+          <input
+            type="url"
+            placeholder="image URL"
+            {...register("imgurl")}
+            className="w-full bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          />
+        </div>
 
         {/* title */}
-        <span className="text-red-500 text-[12px] m-3">
-          {" "}
-          {errors.title && errors.title.message}{" "}
-        </span>
-        <input
-          type="text"
-          placeholder="title"
-          {...register("title", { required: "Title cannot be empty!" })}
-          className="w-full bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
-        />
+        <div className="w-full flex flex-col items-start justify-start mt-3">
+          <span className="text-amber-500 text-[12px] pl-3">Recipe</span>
+          <span className="text-red-500 text-[12px]">
+            {" "}
+            {errors.title && errors.title.message}{" "}
+          </span>
+          <input
+            type="text"
+            placeholder="title"
+            {...register("title", { required: "Title cannot be empty!" })}
+            className="w-full bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          />
+        </div>
 
         {/* description */}
-        <span className="text-red-500 text-[12px] m-3">
-          {" "}
-          {errors.desc && errors.desc.message}{" "}
-        </span>
-        <textarea
-          placeholder="description"
-          {...register("desc", { required: "Description cannot be empty!" })}
-          className="w-full min-h-[150px] bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
-        ></textarea>
+        <div className="w-full flex flex-col items-start justify-start mt-3">
+          <span className="text-amber-500 text-[12px] pl-3">Description</span>
+          <span className="text-red-500 text-[12px]">
+            {" "}
+            {errors.desc && errors.desc.message}{" "}
+          </span>
+          <textarea
+            placeholder="description"
+            {...register("desc", { required: "Description cannot be empty!" })}
+            className="w-full min-h-[150px] bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          ></textarea>
+        </div>
 
         {/* ingredients */}
-        <span className="text-red-500 text-[12px] m-3">
-          {" "}
-          {errors.ingr && errors.ingr.message}{" "}
-        </span>
-        <textarea
-          placeholder="write ingredients seperated by comma"
-          {...register("ingr", {
-            required: "Ingredients cannot be empty!",
-          })}
-          className="w-full min-h-[150px] bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
-        ></textarea>
+        <div className="w-full flex flex-col items-start justify-start mt-3">
+          <span className="text-amber-500 text-[12px] pl-3">Ingredients</span>
+          <span className="text-red-500 text-[12px]">
+            {" "}
+            {errors.ingr && errors.ingr.message}{" "}
+          </span>
+          <textarea
+            placeholder="write ingredients seperated by comma"
+            {...register("ingr", {
+              required: "Ingredients cannot be empty!",
+            })}
+            className="w-full min-h-[150px] bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          ></textarea>
+        </div>
 
         {/* category */}
-        <select
-          {...register("cat")}
-          className="w-full mt-5 bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
-        >
-          <option value="breakfast">Breakfast</option>
-          <option value="lunch">Lunch</option>
-          <option value="dinner">Dinner</option>
-          <option value="snaks">Snaks</option>
-        </select>
+        <div className="w-full flex flex-col items-start justify-start mt-3">
+          <span className="text-amber-500 text-[12px] pl-3">Category</span>
+          <select
+            {...register("cat")}
+            className="w-full bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          >
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="snaks">Snaks</option>
+          </select>
+        </div>
 
         {/* chef */}
-        <input
-          type="text"
-          placeholder="chef name"
-          {...register("chef")}
-          className="w-full mt-5 bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
-        />
+        <div className="w-full flex flex-col items-start justify-start mt-3">
+          <span className="text-amber-500 text-[12px] pl-3">Chef</span>
+          <input
+            type="text"
+            placeholder="chef name"
+            {...register("chef")}
+            className="w-full bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          />
+        </div>
 
         {/* submit btn */}
         <div className="w-full flex gap-10 px-5">
-          <button className="bg-[#0E0D13] hover:bg-[#13111c] cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400">
+          <button className="bg-gradient-to-br hover:bg-gradient-to-tl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400">
             Update
           </button>
           <button
             onClick={deleteHandler}
-            className="bg-[#0E0D13] hover:bg-[#13111c] cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-red-500 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-red-500"
+            className="bg-gradient-to-br hover:bg-gradient-to-tl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-red-500 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-red-500"
           >
             Delete
           </button>

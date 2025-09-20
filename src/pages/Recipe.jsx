@@ -18,9 +18,9 @@ const Recipe = () => {
   ));
 
   const norecipefound = (
-    <div className="w-full flex items-center justify-center mt-10">
-      <p className="lg:text-2xl text-lg accent font-semibold text-center">
-        No recipes found!
+    <div className="w-screen flex flex-wrap p-10 items-center justify-center mt-10 -ml-6 md:-ml-12">
+      <p className="lg:text-2xl text-lg text-amber-400 font-semibold text-center">
+        You haven’t created any recipes yet!
       </p>
     </div>
   );

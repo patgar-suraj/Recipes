@@ -44,7 +44,7 @@ const Contact = () => {
           </div>
           <div className="bg-gradient-to-tr hover:bg-gradient-to-bl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] p-6 rounded-2xl shadow-lg">
             <h2 className="text-xl font-semibold">📞 Phone</h2>
-            <p className="text-gray-400 mt-2">+91 98765 43210</p>
+            <p className="text-gray-400 mt-2">+91 12345 67890</p>
           </div>
           <div className="bg-gradient-to-tr hover:bg-gradient-to-bl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] p-6 rounded-2xl shadow-lg">
             <h2 className="text-xl font-semibold">📍 Address</h2>

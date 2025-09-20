@@ -1,11 +1,9 @@
-import { useContext } from "react";
-import { recipecontext } from "../context/RecipeContext";
 import { CgSearchLoading } from "react-icons/cg";
 
 const SearchCard = ({query, setQuery}) => {
 
   return (
-    <div className="w-full md:w-1/2 bg-gradient-to-r hover:bg-gradient-to-l from-[#0E0D13] via-[#0E0D13] to-[#1b1924] p-2 rounded-full border-l-2 border-amber-300 flex items-center justify-between">
+    <div className="w-full md:w-1/2 transition-all bg-gradient-to-r hover:bg-gradient-to-l from-[#0E0D13] via-[#0E0D13] to-[#1b1924] p-2 rounded-full border-l-2 border-amber-300 flex items-center justify-between">
       <input
         type="text"
         placeholder="find your recipe..."

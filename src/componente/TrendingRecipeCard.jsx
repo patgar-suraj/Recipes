@@ -11,7 +11,7 @@ const TrendingRecipeCard = ({ scrollRef }) => {
       {RecipeList.map((recipe, idx) => (
         <div
           key={idx}
-          className="relative shrink-0 rounded-2xl bg-black overflow-hidden"
+          className="group relative shrink-0 rounded-3xl bg-black overflow-hidden"
         >
           <h1 className="absolute z-20 bottom-12 left-3 break-all w-[125px] lg:w-[175px] text-xl lg:text-[22px] font-semibold text-white">
             {recipe.name}
@@ -26,7 +26,7 @@ const TrendingRecipeCard = ({ scrollRef }) => {
             {recipe.cat}
           </p>
           <img
-            className="w-[200px] xl:w-[250px] h-[250px] xl:h-[300px] object-cover hover:opacity-30 hover:scale-[1.05] transition-all"
+            className="w-[200px] xl:w-[250px] h-[250px] xl:h-[300px] object-cover group-hover:opacity-30 group-hover:scale-[1.05] transition-all"
             src={recipe.img}
             alt={recipe.name}
           />

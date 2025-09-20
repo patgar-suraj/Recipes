@@ -27,7 +27,7 @@ const CategoryCard = () => {
       </div>
       <div className="flex flex-col items-center justify-center bg-gradient-to-tr from-[#0E0D13] to-[#1b1924] hover:text-amber-400 hover:bg-gradient-to-bl hover:from-[#0E0D13] hover:to-[#1b1924] p-4 gap-2 rounded-2xl border-b-2 active:border-amber-400 border-[#0E0D13] mt-5">
         <RiDrinks2Line className="text-2xl" />
-        <span className="text-[14px] font-semibold">Smoothhies</span>
+        <span className="text-[14px] font-semibold">Smoothies</span>
       </div>
       <div className="flex flex-col items-center justify-center bg-gradient-to-tr from-[#0E0D13] to-[#1b1924] hover:text-amber-400 hover:bg-gradient-to-bl hover:from-[#0E0D13] hover:to-[#1b1924] p-4 gap-2 rounded-2xl border-b-2 active:border-amber-400 border-[#0E0D13] mt-5">
         <LuDessert className="text-2xl" />

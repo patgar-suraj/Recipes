@@ -21,13 +21,17 @@ const CreateRecipe = () => {
 
   const submitHandler = (data) => {
     data.id = nanoid();
-    const copydata = [...recipe]
-    copydata.push(data)
-    setrecipe(copydata)
-    localStorage.setItem("recipes", JSON.stringify(copydata))
+    const copydata = [...recipe];
+    copydata.push(data);
+    setrecipe(copydata);
+    localStorage.setItem("recipes", JSON.stringify(copydata));
     toast.success("Recipe Created!");
     reset();
     navigate("/recipe");
+  };
+
+  const cancleBtn = () => {
+    navigate("/");
   };
 
   return (
@@ -37,11 +41,11 @@ const CreateRecipe = () => {
     >
       <div className="mt-5 w-full md:w-[60%] lg:w-[40%] flex flex-col items-center justify-center">
         <div className="mt-5 w-[60%] md:w-[50%] flex flex-col items-center justify-center">
-            <img
-              src={imagePreview ? imagePreview : null}
-              alt="food_img"
-              className="w-[100%] rounded-3xl border-2 border-white/20 p-2 hover:scale-[100.8%] transition-all hover:shadow-xl"
-            />
+          <img
+            src={imagePreview ? imagePreview : null}
+            alt="food_img"
+            className="w-[100%] rounded-3xl border-2 border-white/20 p-2 hover:scale-[100.8%] transition-all hover:shadow-xl"
+          />
         </div>
 
         {/* image url */}
@@ -59,7 +63,7 @@ const CreateRecipe = () => {
         </span>
         <input
           type="text"
-          placeholder="title"
+          placeholder="recipe"
           {...register("title", { required: "Title cannot be empty!" })}
           className="w-full bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
         />
@@ -97,7 +101,7 @@ const CreateRecipe = () => {
           <option value="lunch">Lunch</option>
           <option value="dinner">Dinner</option>
           <option value="snaks">Snaks</option>
-          <option value="smoothhies">Smoothhies</option>
+          <option value="smoothies">Smoothies</option>
           <option value="dessert">Dessert</option>
         </select>
 
@@ -110,9 +114,17 @@ const CreateRecipe = () => {
         />
 
         {/* submit btn */}
-        <button className="bg-gradient-to-r from-[#0E0D13] via-[#0E0D13] to-[#1b1924] hover:bg-gradient-to-l p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 border-b-2 transition-all active:text-[17px] border-amber-400 cursor-pointer">
-          Create
-        </button>
+        <div className="w-full flex gap-10 px-5">
+          <button className="bg-gradient-to-br hover:bg-gradient-to-tl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400">
+            Create
+          </button>
+          <button
+            onClick={cancleBtn}
+            className="bg-gradient-to-br hover:bg-gradient-to-tl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-red-500 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-red-500"
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </form>
   );

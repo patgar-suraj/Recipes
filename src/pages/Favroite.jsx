@@ -4,9 +4,9 @@ import SearchCard from "../componente/SearchCard";
 import { recipecontext } from "../context/RecipeContext";
 
 const Favroite = () => {
-  const [query, setQuery] = useState("")
-
   const favroite = JSON.parse(localStorage.getItem("fav") || "[]");
+  
+  const [query, setQuery] = useState("")
 
   const filteredFavorites = favroite.filter(
     (r) =>
@@ -21,7 +21,7 @@ const Favroite = () => {
   const nofavfound = (
     <div className="w-screen flex flex-wrap p-10 items-center justify-center mt-10 -ml-6 md:-ml-12">
       <p className="lg:text-2xl text-lg text-amber-400 font-semibold text-center">
-        You haven't added any favorite recipes!
+        You haven't added any favorite recipes yet!
       </p>
     </div>
   );
