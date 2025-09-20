@@ -112,7 +112,7 @@ const SingleRecipe = () => {
       onSubmit={handleSubmit(updataHandler)}
       className="w-full rounded flex flex-col items-center justify-center relative"
     >
-      <div className="relative flex items-center justify-center w-[80%] md:w-[60%] xl:w-[40%]">
+      <div className="relative flex items-center justify-center w-[90%] md:w-[60%] xl:w-[50%]">
         <div
           className="group absolute hover:shadow-lg flex items-center justify-start top-[10%] left-[0] w-[20px] hover:w-[60px] h-[30px] xl:w-[30px] hover:xl:w-[70px] xl:h-[40px] p-[3px]  xl:p-[6px] rounded-full bg-[#0b1221] hover:bg-slate-900 hover:text-amber-400 border-l-2 active:border-l-0 cursor-pointer"
           onClick={goBack}
@@ -123,7 +123,7 @@ const SingleRecipe = () => {
           </span>
         </div>
 
-        <div className="mt-5 w-[200px] max-h-[200px] md:w-[250px] xl:w-[280px] border-2 border-white/20 object-cover overflow-hidden flex items-center justify-center bg-[#0b1221] hover:bg-[#0b1221]/80 rounded-3xl hover:shadow-xl">
+        <div className="mt-5 w-[200px] max-h-[200px] md:w-[250px] xl:w-[300px] border-2 border-white/20 object-cover overflow-hidden flex items-center justify-center bg-[#0b1221] hover:bg-[#0b1221]/80 rounded-3xl hover:shadow-xl">
           {imgpreview && !imgLoadError ? (
             <img
               src={imgpreview}
@@ -154,8 +154,10 @@ const SingleRecipe = () => {
         </div>
       </div>
 
-      <div className="mt-5 w-full md:w-[60%] xl:w-[40%] flex flex-col items-center justify-center">
-        {/* image url */}
+      <div className="mt-5 w-full md:w-[60%] xl:w-[50%] flex flex-col items-center justify-center">
+        
+        <div className="w-full flex flex-col bg-[#10182B] p-3 rounded-r-2xl mt-5">
+          {/* image url */}
         <div className="w-full flex flex-col items-start justify-start mt-3">
           <span className="text-amber-500 text-[12px] pl-3">Image link</span>
           <input
@@ -236,6 +238,7 @@ const SingleRecipe = () => {
             {...register("chef")}
             className="w-full bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
           />
+        </div>
         </div>
 
         {/* submit btn */}

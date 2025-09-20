@@ -16,21 +16,21 @@ const Contact = () => {
           <input
             type="text"
             placeholder="Your Name"
-            className="p-3 rounded-lg outline-none"
+            className="p-3 rounded-lg outline-none border-b-2 border-slate-500"
           />
           <input
             type="email"
             placeholder="Your Email"
-            className="p-3 rounded-lg outline-none"
+            className="p-3 rounded-lg outline-none border-b-2 border-slate-500"
           />
           <textarea
             rows="5"
             placeholder="Your Message"
-            className="p-3 rounded-lg outline-none min-h-[150px]"
+            className="p-3 rounded-lg outline-none min-h-[105px] border-b-2 border-slate-500"
           />
           <button
             type="submit"
-            className="bg-slate-700 hover:bg-slate-600 border-t-2 border-slate-400 font-semibold py-3 rounded-lg transition"
+            className="bg-slate-700 hover:bg-slate-600 border-b-2 border-slate-400 font-semibold py-3 rounded-lg transition cursor-pointer"
           >
             Send Message
           </button>

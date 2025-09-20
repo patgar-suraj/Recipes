@@ -9,7 +9,13 @@ createRoot(document.getElementById("root")).render(
   <RecipeContext>
     <BrowserRouter>
       <App />
-      <ToastContainer />
+      <ToastContainer
+        toastStyle={{ backgroundColor: "transparent", color: "#fff" }}
+        autoClose={1500}
+        draggable
+        rtl={false}
+        pauseOnHover={false}
+      />
     </BrowserRouter>
   </RecipeContext>
 );

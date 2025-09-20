@@ -39,8 +39,8 @@ const CreateRecipe = () => {
       onSubmit={handleSubmit(submitHandler)}
       className="w-full rounded flex items-center justify-center relative"
     >
-      <div className="mt-5 w-full md:w-[60%] lg:w-[40%] flex flex-col items-center justify-center">
-        <div className="mt-5 w-[60%] md:w-[50%] flex flex-col items-center justify-center">
+      <div className="mt-5 w-full md:w-[60%] lg:w-[50%] flex flex-col items-center justify-center">
+        <div className="mt-5 w-[60%] md:w-[40%] flex flex-col bg-[#0b1221]/70 rounded-3xl items-center justify-center">
           <img
             src={imagePreview ? imagePreview : null}
             alt="food_img"
@@ -48,82 +48,84 @@ const CreateRecipe = () => {
           />
         </div>
 
-        {/* image url */}
-        <input
-          type="url"
-          placeholder="image URL"
-          {...register("imgurl")}
-          className="w-full bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 mt-5 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
-        />
+        <div className="w-full flex flex-col bg-[#10182B] p-3 rounded-r-2xl mt-5">
+          {/* image url */}
+          <input
+            type="url"
+            placeholder="image URL"
+            {...register("imgurl")}
+            className="w-full bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 mt-5 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
+          />
 
-        {/* title */}
-        <span className="text-red-500 text-[12px] m-3">
-          {" "}
-          {errors.title && errors.title.message}{" "}
-        </span>
-        <input
-          type="text"
-          placeholder="recipe"
-          {...register("title", { required: "Title cannot be empty!" })}
-          className="w-full bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
-        />
+          {/* title */}
+          <span className="text-red-500 text-[12px] m-3">
+            {" "}
+            {errors.title && errors.title.message}{" "}
+          </span>
+          <input
+            type="text"
+            placeholder="recipe"
+            {...register("title", { required: "Title cannot be empty!" })}
+            className="w-full bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
+          />
 
-        {/* description */}
-        <span className="text-red-500 text-[12px] m-3">
-          {" "}
-          {errors.desc && errors.desc.message}{" "}
-        </span>
-        <textarea
-          placeholder="description"
-          {...register("desc", { required: "Description cannot be empty!" })}
-          className="w-full min-h-[150px] bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
-        ></textarea>
+          {/* description */}
+          <span className="text-red-500 text-[12px] m-3">
+            {" "}
+            {errors.desc && errors.desc.message}{" "}
+          </span>
+          <textarea
+            placeholder="description"
+            {...register("desc", { required: "Description cannot be empty!" })}
+            className="w-full min-h-[150px] bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
+          ></textarea>
 
-        {/* ingredients */}
-        <span className="text-red-500 text-[12px] m-3">
-          {" "}
-          {errors.ingr && errors.ingr.message}{" "}
-        </span>
-        <textarea
-          placeholder="ingredients"
-          {...register("ingr", {
-            required: "Ingredients cannot be empty!",
-          })}
-          className="w-full min-h-[150px] bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
-        ></textarea>
+          {/* ingredients */}
+          <span className="text-red-500 text-[12px] m-3">
+            {" "}
+            {errors.ingr && errors.ingr.message}{" "}
+          </span>
+          <textarea
+            placeholder="ingredients"
+            {...register("ingr", {
+              required: "Ingredients cannot be empty!",
+            })}
+            className="w-full min-h-[150px] bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
+          ></textarea>
 
-        {/* category */}
-        <select
-          {...register("cat")}
-          className="w-full mt-5 bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
-        >
-          <option className="bg-slate-900" value="breakfast">
-            Breakfast
-          </option>
-          <option className="bg-slate-900" value="lunch">
-            Lunch
-          </option>
-          <option className="bg-slate-900" value="dinner">
-            Dinner
-          </option>
-          <option className="bg-slate-900" value="snaks">
-            Snaks
-          </option>
-          <option className="bg-slate-900" value="smoothies">
-            Smoothies
-          </option>
-          <option className="bg-slate-900" value="dessert">
-            Dessert
-          </option>
-        </select>
+          {/* category */}
+          <select
+            {...register("cat")}
+            className="w-full mt-5 bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
+          >
+            <option className="bg-slate-900" value="breakfast">
+              Breakfast
+            </option>
+            <option className="bg-slate-900" value="lunch">
+              Lunch
+            </option>
+            <option className="bg-slate-900" value="dinner">
+              Dinner
+            </option>
+            <option className="bg-slate-900" value="snaks">
+              Snaks
+            </option>
+            <option className="bg-slate-900" value="smoothies">
+              Smoothies
+            </option>
+            <option className="bg-slate-900" value="dessert">
+              Dessert
+            </option>
+          </select>
 
-        {/* chef */}
-        <input
-          type="text"
-          placeholder="chef name"
-          {...register("chef")}
-          className="w-full mt-5 bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
-        />
+          {/* chef */}
+          <input
+            type="text"
+            placeholder="chef name"
+            {...register("chef")}
+            className="w-full mt-5 bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
+          />
+        </div>
 
         {/* submit btn */}
         <div className="w-full flex gap-10 px-5">
