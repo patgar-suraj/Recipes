@@ -24,12 +24,12 @@ const Home = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center justify-center gap-5">
           <img
-            className="w-[80px] h-[80px] rounded-full hover:border-2 border-amber-400 object-cover"
-            src="https://imgs.search.brave.com/LZVvz2m6dEdxABLGXG0gsI8DRnezcqYeh1zPBYF3tc4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4t/ZnJvbnQuZnJlZXBp/ay5jb20vaG9tZS9h/bm9uLXJ2bXAvY3Jl/YXRpdmUtc3VpdGUv/cGhvdG9ncmFwaHkv/Y2hhbmdlLWxvY2F0/aW9uLndlYnA"
+            className="w-[80px] h-[80px] rounded-full hover:border-2 border-slate-950 object-cover"
+            src="https://i.pinimg.com/1200x/60/f3/8f/60f38ff9f4113d96ac13a43a4919e848.jpg"
           />
-          <h1 className="md:text-2xl text-xl font-semibold cursor-default">Suraj</h1>
+          <h1 className="md:text-2xl text-xl font-semibold cursor-default">User</h1>
         </div>
-        <div className="bg-[#0F0E15] hover:text-amber-400 rounded-full p-3">
+        <div className="bg-slate-900 hover:text-amber-400 rounded-full p-3">
           <IoMdNotificationsOutline className="text-2xl" />
         </div>
       </div>
@@ -50,14 +50,14 @@ const Home = () => {
         <div className="w-20px p-1">
           <BiArrowToLeft
             onClick={scrollleft}
-            className="text-4xl hidden xl:block hover:text-gray-300"
+            className="text-4xl hidden xl:block hover:text-amber-400"
           />
         </div>
         <TrendingRecipeCard scrollRef={scrollRef} />
         <div className="w-20px p-1">
           <BiArrowToRight
             onClick={scrollright}
-            className="text-4xl hidden xl:block hover:text-gray-300"
+            className="text-4xl hidden xl:block hover:text-amber-400"
           />
         </div>
       </div>

@@ -11,7 +11,7 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <nav className="w-full z-50 fixed bottom-0 left-0 p-3 border-t-2  rounded-t-4xl bg-gradient-to-r from-[#0E0D13] via-[#191926] to-[#0E0D13] text-[#797993] flex items-center justify-center text-xl font-semibold gap-10">
+    <nav className="w-full z-50 fixed bottom-0 left-0 p-3 border-t-2  rounded-t-4xl bg-gradient-to-r from-[#0b1221] via-[#121c31] to-[#0b1221] text-[#797993] flex items-center justify-center text-xl font-semibold gap-10">
       <NavLink
         to="/"
         className={({ isActive }) =>

@@ -12,7 +12,7 @@ const Contact = () => {
       {/* Main Content */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* Left - Form */}
-        <form className="bg-gradient-to-tr hover:bg-gradient-to-bl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] rounded-2xl shadow-lg p-8 flex flex-col gap-5">
+        <form className="bg-gradient-to-tr hover:bg-gradient-to-bl from-slate-900 via-slate-900 to-slate-800 rounded-xl shadow-lg border-t-2 border-slate-600 p-8 flex flex-col gap-5">
           <input
             type="text"
             placeholder="Your Name"
@@ -30,7 +30,7 @@ const Contact = () => {
           />
           <button
             type="submit"
-            className="bg-amber-400 hover:bg-amber-500 font-semibold py-3 rounded-lg transition"
+            className="bg-slate-700 hover:bg-slate-600 border-t-2 border-slate-400 font-semibold py-3 rounded-lg transition"
           >
             Send Message
           </button>
@@ -38,15 +38,15 @@ const Contact = () => {
 
         {/* Right - Info */}
         <div className="flex flex-col gap-6">
-          <div className="bg-gradient-to-tr hover:bg-gradient-to-bl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] p-6 rounded-2xl shadow-lg">
+          <div className="bg-gradient-to-tr hover:bg-gradient-to-bl from-slate-900 via-slate-900 to-slate-800 p-6 rounded-xl border-t-2 border-slate-600 shadow-lg">
             <h2 className="text-xl font-semibold">📧 Email</h2>
             <p className="text-gray-400 mt-2">support@recipebox.com</p>
           </div>
-          <div className="bg-gradient-to-tr hover:bg-gradient-to-bl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] p-6 rounded-2xl shadow-lg">
+          <div className="bg-gradient-to-tr hover:bg-gradient-to-bl from-slate-900 via-slate-900 to-slate-800 p-6 rounded-xl border-t-2 border-slate-600 shadow-lg">
             <h2 className="text-xl font-semibold">📞 Phone</h2>
             <p className="text-gray-400 mt-2">+91 12345 67890</p>
           </div>
-          <div className="bg-gradient-to-tr hover:bg-gradient-to-bl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] p-6 rounded-2xl shadow-lg">
+          <div className="bg-gradient-to-tr hover:bg-gradient-to-bl from-slate-900 via-slate-900 to-slate-800 p-6 rounded-xl border-t-2 border-slate-600 shadow-lg">
             <h2 className="text-xl font-semibold">📍 Address</h2>
             <p className="text-gray-400 mt-2">
               Bangalore, Karnataka, India
@@ -56,7 +56,7 @@ const Contact = () => {
       </div>
 
       {/* Map (Optional) */}
-      <div className="mt-12 bg-gradient-to-tr hover:bg-gradient-to-bl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] flex items-center justify-center p-5 rounded-3xl">
+      <div className="mt-12 bg-gradient-to-tr hover:bg-gradient-to-bl from-slate-900 via-slate-900 to-slate-800 flex items-center justify-center p-5 border-t-2 border-slate-600 rounded-lg">
         <p>All ©️ rights reserved 2025-26</p>
       </div>
     </div>

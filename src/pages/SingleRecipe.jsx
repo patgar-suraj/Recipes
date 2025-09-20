@@ -114,7 +114,7 @@ const SingleRecipe = () => {
     >
       <div className="relative flex items-center justify-center w-[80%] md:w-[60%] xl:w-[40%]">
         <div
-          className="group absolute hover:shadow-lg flex items-center justify-start top-[10%] left-[0] w-[20px] hover:w-[60px] h-[30px] xl:w-[30px] hover:xl:w-[70px] xl:h-[40px] p-[3px]  xl:p-[6px] rounded-full bg-[#0E0D13] hover:bg-[#0E0D13]/80 hover:text-amber-400 border-l-2 active:border-l-0 cursor-pointer"
+          className="group absolute hover:shadow-lg flex items-center justify-start top-[10%] left-[0] w-[20px] hover:w-[60px] h-[30px] xl:w-[30px] hover:xl:w-[70px] xl:h-[40px] p-[3px]  xl:p-[6px] rounded-full bg-[#0b1221] hover:bg-slate-900 hover:text-amber-400 border-l-2 active:border-l-0 cursor-pointer"
           onClick={goBack}
         >
           <IoCaretBackOutline />
@@ -123,7 +123,7 @@ const SingleRecipe = () => {
           </span>
         </div>
 
-        <div className="mt-5 w-[200px] max-h-[200px] md:w-[250px] xl:w-[280px] border-2 border-white/20 object-cover overflow-hidden flex items-center justify-center bg-[#0E0D13] hover:bg-[#0E0D13]/80 rounded-3xl hover:shadow-xl">
+        <div className="mt-5 w-[200px] max-h-[200px] md:w-[250px] xl:w-[280px] border-2 border-white/20 object-cover overflow-hidden flex items-center justify-center bg-[#0b1221] hover:bg-[#0b1221]/80 rounded-3xl hover:shadow-xl">
           {imgpreview && !imgLoadError ? (
             <img
               src={imgpreview}
@@ -143,12 +143,12 @@ const SingleRecipe = () => {
           {favroite.find((f) => f.id == data?.id) ? (
             <FaHeart
               onClick={unfavhandler}
-              className="absolute right-0 top-[15px] text-3xl z-20  text-red-500"
+              className="absolute right-0 top-[15px] text-3xl z-20  text-[#EC0109]"
             />
           ) : (
             <FaRegHeart
               onClick={favhandler}
-              className="absolute right-0 top-[15px] text-3xl z-20 text-red-500"
+              className="absolute right-0 top-[15px] text-3xl z-20 text-[#EC0109]"
             />
           )}
         </div>
@@ -162,7 +162,7 @@ const SingleRecipe = () => {
             type="url"
             placeholder="image URL"
             {...register("imgurl")}
-            className="w-full bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+            className="w-full bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
           />
         </div>
 
@@ -177,7 +177,7 @@ const SingleRecipe = () => {
             type="text"
             placeholder="title"
             {...register("title", { required: "Title cannot be empty!" })}
-            className="w-full bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+            className="w-full bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
           />
         </div>
 
@@ -191,7 +191,7 @@ const SingleRecipe = () => {
           <textarea
             placeholder="description"
             {...register("desc", { required: "Description cannot be empty!" })}
-            className="w-full min-h-[150px] bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+            className="w-full min-h-[150px] bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
           ></textarea>
         </div>
 
@@ -207,7 +207,7 @@ const SingleRecipe = () => {
             {...register("ingr", {
               required: "Ingredients cannot be empty!",
             })}
-            className="w-full min-h-[150px] bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+            className="w-full min-h-[150px] bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
           ></textarea>
         </div>
 
@@ -216,12 +216,14 @@ const SingleRecipe = () => {
           <span className="text-amber-500 text-[12px] pl-3">Category</span>
           <select
             {...register("cat")}
-            className="w-full bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+            className="w-full bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
           >
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>
             <option value="dinner">Dinner</option>
             <option value="snaks">Snaks</option>
+            <option value="smoothies">Smoothies</option>
+            <option value="dessert">Dessert</option>
           </select>
         </div>
 
@@ -232,18 +234,18 @@ const SingleRecipe = () => {
             type="text"
             placeholder="chef name"
             {...register("chef")}
-            className="w-full bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+            className="w-full bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
           />
         </div>
 
         {/* submit btn */}
         <div className="w-full flex gap-10 px-5">
-          <button className="bg-gradient-to-br hover:bg-gradient-to-tl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400">
+          <button className="bg-gradient-to-br hover:bg-gradient-to-tl from-slate-900 via-slate-900 to-slate-800 cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400">
             Update
           </button>
           <button
             onClick={deleteHandler}
-            className="bg-gradient-to-br hover:bg-gradient-to-tl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-red-500 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-red-500"
+            className="bg-gradient-to-br hover:bg-gradient-to-tl from-slate-900 via-slate-900 to-slate-800 cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-red-500 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-red-500"
           >
             Delete
           </button>

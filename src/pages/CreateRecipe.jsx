@@ -53,7 +53,7 @@ const CreateRecipe = () => {
           type="url"
           placeholder="image URL"
           {...register("imgurl")}
-          className="w-full bg-[#0E0D13] hover:bg-[#13111c] mt-5 border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          className="w-full bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 mt-5 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
         />
 
         {/* title */}
@@ -65,7 +65,7 @@ const CreateRecipe = () => {
           type="text"
           placeholder="recipe"
           {...register("title", { required: "Title cannot be empty!" })}
-          className="w-full bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          className="w-full bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
         />
 
         {/* description */}
@@ -76,7 +76,7 @@ const CreateRecipe = () => {
         <textarea
           placeholder="description"
           {...register("desc", { required: "Description cannot be empty!" })}
-          className="w-full min-h-[150px] bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          className="w-full min-h-[150px] bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
         ></textarea>
 
         {/* ingredients */}
@@ -85,24 +85,36 @@ const CreateRecipe = () => {
           {errors.ingr && errors.ingr.message}{" "}
         </span>
         <textarea
-          placeholder="write ingredients seperated by comma"
+          placeholder="ingredients"
           {...register("ingr", {
             required: "Ingredients cannot be empty!",
           })}
-          className="w-full min-h-[150px] bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          className="w-full min-h-[150px] bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
         ></textarea>
 
         {/* category */}
         <select
           {...register("cat")}
-          className="w-full mt-5 bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          className="w-full mt-5 bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
         >
-          <option value="breakfast">Breakfast</option>
-          <option value="lunch">Lunch</option>
-          <option value="dinner">Dinner</option>
-          <option value="snaks">Snaks</option>
-          <option value="smoothies">Smoothies</option>
-          <option value="dessert">Dessert</option>
+          <option className="bg-slate-900" value="breakfast">
+            Breakfast
+          </option>
+          <option className="bg-slate-900" value="lunch">
+            Lunch
+          </option>
+          <option className="bg-slate-900" value="dinner">
+            Dinner
+          </option>
+          <option className="bg-slate-900" value="snaks">
+            Snaks
+          </option>
+          <option className="bg-slate-900" value="smoothies">
+            Smoothies
+          </option>
+          <option className="bg-slate-900" value="dessert">
+            Dessert
+          </option>
         </select>
 
         {/* chef */}
@@ -110,17 +122,17 @@ const CreateRecipe = () => {
           type="text"
           placeholder="chef name"
           {...register("chef")}
-          className="w-full mt-5 bg-[#0E0D13] hover:bg-[#13111c] border-[#0E0D13]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-semibold  text-[16px]"
+          className="w-full mt-5 bg-[#0b1221] hover:bg-slate-900 border-[#0b1221]/70 border-2 border-l-amber-400 rounded-r-2xl p-2 font-thin text-[16px]"
         />
 
         {/* submit btn */}
         <div className="w-full flex gap-10 px-5">
-          <button className="bg-gradient-to-br hover:bg-gradient-to-tl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400">
+          <button className="bg-gradient-to-br hover:bg-gradient-to-tl from-slate-900 via-slate-900 to-slate-800 cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-amber-400 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-amber-400">
             Create
           </button>
           <button
             onClick={cancleBtn}
-            className="bg-gradient-to-br hover:bg-gradient-to-tl from-[#0E0D13] via-[#0E0D13] to-[#1b1924] cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-red-500 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-red-500"
+            className="bg-gradient-to-br hover:bg-gradient-to-tl from-slate-900 via-slate-900 to-slate-800 cursor-pointer p-3 w-1/2 mb-24 mt-5 rounded-2xl font-semibold text-red-500 active:border-0 active:text-[17px] hover:bg-[#0e0d13c0 border-b-2 border-red-500"
           >
             Cancel
           </button>
