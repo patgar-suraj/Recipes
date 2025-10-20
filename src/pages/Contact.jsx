@@ -1,6 +1,6 @@
 const Contact = () => {
   return (
-    <div className="w-full min-h-screen mt-20 py-10 px-5 md:px-20">
+    <div className="w-full min-h-screen mt-20 pt-10 lg:px-5">
       {/* Title */}
       <div className="text-center mb-10">
         <h1 className="text-4xl font-bold font-mono">Contact Us</h1>
@@ -26,7 +26,7 @@ const Contact = () => {
           <textarea
             rows="5"
             placeholder="Your Message"
-            className="p-3 rounded-lg outline-none min-h-[105px] border-b-2 border-slate-500"
+            className="p-3 rounded-lg outline-none min-h-[105px] max-h-[105px] border-b-2 border-slate-500"
           />
           <button
             type="submit"
@@ -56,7 +56,7 @@ const Contact = () => {
       </div>
 
       {/* Map (Optional) */}
-      <div className="mt-12 bg-gradient-to-tr hover:bg-gradient-to-bl from-slate-900 via-slate-900 to-slate-800 flex items-center justify-center p-5 border-t-2 border-slate-600 rounded-lg">
+      <div className="mt-32 bg-gradient-to-tr hover:bg-gradient-to-bl from-slate-900 via-slate-900 to-slate-800 flex items-center justify-center p-5 border-t-2 border-slate-600 rounded-lg">
         <p>All ©️ rights reserved 2025-26</p>
       </div>
     </div>

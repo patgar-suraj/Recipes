@@ -5,7 +5,7 @@ const TrendingRecipeCard = ({ scrollRef }) => {
   return (
     <div
       ref={scrollRef}
-      className="flex overflow-x-auto custom-scrollbar gap-5"
+      className="flex overflow-x-auto rounded-3xl custom-scrollbar gap-5"
     >
       {/* Card 1 */}
       {RecipeList.map((recipe, idx) => (

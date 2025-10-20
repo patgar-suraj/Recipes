@@ -20,7 +20,7 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col w-full mb-20">
+    <div className="flex flex-col w-full mb-20 md:mb-0 xl:mb-20">
       <div className="flex items-center justify-between">
         <div className="flex items-center justify-center gap-5">
           <img
